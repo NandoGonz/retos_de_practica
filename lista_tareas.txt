@@ -1,4 +1,0 @@
-1: No es bueno hacer todo dento del mismo archivo
-2: Solo será por este vez
-3: Hacer de uno a dos ejercicios de los conceptos que ya domine
-4: Me siento algo perdido en este tema y es gracioso, no es muy complicado

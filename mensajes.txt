@@ -1,4 +1,0 @@
-Error en el sistema
-Proceso exitoso
-Error de conexión
-Todo correcto
