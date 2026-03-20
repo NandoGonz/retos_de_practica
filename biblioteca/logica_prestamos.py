@@ -7,7 +7,7 @@ class Libro:
 
     def __str__(self):
         estado = "Disponible" if self.disponible else "Prestado"
-        return f"{self.titulo} - {self.autor} | ISBN: {self.isbn} | Estado: {estado}"
+        return f" Titulo: {self.titulo} - Autor: {self.autor} | ISBN: {self.isbn} | Estado: {estado}"
 
 
 class GestorPrestamos:
@@ -45,7 +45,7 @@ class GestorPrestamos:
         # 4️⃣ Retornar True o False
         libro = self.buscar_por_isbn(isbn)
         if libro is None:
-            return False
+            return None
         if libro.disponible is True:
             libro.disponible = False
             return True
@@ -58,7 +58,7 @@ class GestorPrestamos:
         # 4️⃣ Retornar True o False
         libro = self.buscar_por_isbn(isbn)
         if libro is None:
-            return False
+            return None
         if libro.disponible is False:
             libro.disponible = True
             return True
