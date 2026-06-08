@@ -40,7 +40,8 @@ class Cliente(BaseModel):
         Cliente: {self.nombre} {self.apellido}
         Documento: {self.documento}
         Email: {self.email}
-        Saldo: {self.saldo}
+        Dirección: {self.direccion}
+        Saldo $: {self.saldo:,.2f}
         Estado: {estado}
         """
 
@@ -116,22 +117,24 @@ class GestorCliente:
         return self.clientes
 
     def actualizar_estado(self, documento: int):
-        """Alterna el estado `activo` de un cliente.
+        """Alterna el estado `activo` de un cliente y devuelve el nuevo valor.
 
         Args:
             documento (int): Documento del cliente a actualizar.
 
         Returns:
-            bool | None: True si la actualización se realizó, None si no se encontró el cliente.
+            bool | None: True si el cliente quedó activo, False si quedó inactivo,
+            None si no se encontró el cliente.
         """
         cliente = self.buscar_cliente_docu(n_documento=documento)
         if cliente is None:
             return None
+        if cliente.activo is False:
+            cliente.activo = True
+            return True
         if cliente.activo is True:
             cliente.activo = False
-        elif cliente.activo is False:
-            cliente.activo = True
-        return True
+            return False
 
     def actualizar_cliente(
         self, nombre: str, apellido: str, direccion: str, email: str, documento: int

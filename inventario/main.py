@@ -59,7 +59,7 @@ while True:
                 producto = inventario.cambiar_estado(nombre=nombre)
                 if producto is False:
                     print("Producto disonible")
-                if producto is True:
+                elif producto is True:
                     print("producto agotado")
                 elif producto is None:
                     print("El producto no existe")
@@ -76,7 +76,7 @@ while True:
                 if producto is True:
                     producto_precio = inventario.listar_por_nombre(
                         nombre=nombre
-                    )  # sustrae el precio del objeto para calcular el valor total de la venta
+                    )  # sustrae el precio del objeto para calcular el valor total de la ventap
                     if producto_precio:
                         print(f"""
                             Se vendio la cantidad de {cantidad}
