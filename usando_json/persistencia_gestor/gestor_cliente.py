@@ -21,12 +21,7 @@ class GestorCliente:
     def __init__(self) -> None:
         """Inicializa el gestor con una lista vacía de clientes."""
         self.clientes = []
-
-    def registrar(self, cliente: Cliente):
-        if cliente.documento in self.clientes:
-            return False
-        self.clientes.append(cliente)
-        return True
+        self.cargar_json()
 
     def guardar_json(self):
         datos = []
@@ -46,7 +41,15 @@ class GestorCliente:
             cliente = Cliente(**dato)
             self.clientes.append(cliente)
 
-    def listar(self):
+    def registrar(self, cliente: Cliente):
+        validar = self.listar_por_documento(cliente.documento)
+        if validar:
+            return False
+        self.clientes.append(cliente)
+        self.guardar_json()
+        return True
+
+    def listar_clientes(self):
         return self.clientes
 
     def actualizar_cliente(self, identificacion: int, cliente_act: Cliente):
@@ -59,3 +62,22 @@ class GestorCliente:
                 self.guardar_json()
                 return True
         return False
+
+    def listar_por_documento(self, documento: int):
+        for cliente in self.clientes:
+            if cliente.documento == documento:
+                return cliente
+        return None
+
+    def modificar_estado(self, documento: int):
+        validar = self.listar_por_documento(documento=documento)
+        if validar is None:
+            return None
+        if validar.activo is False:
+            validar.activo = True
+            self.guardar_json()
+            return True
+        if validar.activo is True:
+            validar.activo = False
+            self.guardar_json()
+            return False
