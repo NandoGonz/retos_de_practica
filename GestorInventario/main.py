@@ -1,4 +1,4 @@
-from gestor_inventario import Inventario
+from GestorInventario.gestor_inventario import Inventario
 
 inventario = Inventario()
 
